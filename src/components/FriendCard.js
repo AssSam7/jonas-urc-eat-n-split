@@ -1,4 +1,4 @@
-export default function FriendCard({ image, name, balance }) {
+export default function FriendCard({ avatar, name, balance }) {
   function getBalanceInfo() {
     if (balance > 0) {
       return (
@@ -19,7 +19,7 @@ export default function FriendCard({ image, name, balance }) {
 
   return (
     <li>
-      <img src={image} alt="Dustin Henderson" />
+      <img src={avatar} alt="Dustin Henderson" />
       <h3>{name}</h3>
       {getBalanceInfo()}
       <button className="button">Select</button>
