@@ -1,8 +1,4 @@
-export default function FriendCard({
-  friend,
-  selectedFriend,
-  setSelectedFriend,
-}) {
+export default function FriendCard({ friend, selectedFriend, onSelectFriend }) {
   function getBalanceInfo() {
     if (friend.balance > 0) {
       return (
@@ -26,13 +22,8 @@ export default function FriendCard({
       <img src={friend.avatar} alt="Dustin Henderson" />
       <h3>{friend.name}</h3>
       {getBalanceInfo()}
-      <button
-        className="button"
-        onClick={() =>
-          setSelectedFriend((id) => (id === friend.id ? null : friend.id))
-        }
-      >
-        {selectedFriend === friend.id ? "Close" : "Select"}
+      <button className="button" onClick={() => onSelectFriend(friend)}>
+        {selectedFriend?.id === friend.id ? "Close" : "Select"}
       </button>
     </li>
   );
