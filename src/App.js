@@ -1,6 +1,10 @@
+import { useState } from "react";
 import FriendsList from "./components/FriendsList";
 
 export default function App() {
+  const [isAddingFriend, setIsAddingFriend] = useState(false);
+  /*   const [selectedFriend, setSelectedFriend]
+   */
   const initialFriends = [
     {
       id: 118836,
@@ -24,7 +28,11 @@ export default function App() {
 
   return (
     <div class="app">
-      <FriendsList initialFriends={initialFriends} />
+      <FriendsList
+        initialFriends={initialFriends}
+        isAddingFriend={isAddingFriend}
+        setIsAddingFriend={setIsAddingFriend}
+      />
     </div>
   );
 }

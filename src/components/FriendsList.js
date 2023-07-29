@@ -1,8 +1,11 @@
 import { useState } from "react";
 import FriendCard from "./FriendCard";
 
-export default function FriendsList({ initialFriends }) {
-  const [isAddingFriend, setIsAddingFriend] = useState(false);
+export default function FriendsList({
+  initialFriends,
+  isAddingFriend,
+  setIsAddingFriend,
+}) {
   const [friend, setFriend] = useState({
     name: "",
     avatar: "https://i.pravatar.cc/48",
@@ -12,14 +15,16 @@ export default function FriendsList({ initialFriends }) {
   function addFriend(e) {
     e.preventDefault();
     const randomId = Math.floor(100000 + Math.random() * 900000);
-    setFriendsList((list) => [
-      ...list,
-      {
-        id: randomId,
-        ...friend,
-        balance: 0,
-      },
-    ]);
+    if (friend.name && friend.avatar) {
+      setFriendsList((list) => [
+        ...list,
+        {
+          id: randomId,
+          ...friend,
+          balance: 0,
+        },
+      ]);
+    }
   }
 
   function handleFriendInput(e) {
