@@ -5,6 +5,8 @@ export default function FriendsList({
   initialFriends,
   isAddingFriend,
   setIsAddingFriend,
+  onAddingFriend,
+  ...rest
 }) {
   const [friend, setFriend] = useState({
     name: "",
@@ -39,10 +41,10 @@ export default function FriendsList({
     <div className="sidebar">
       <ul>
         {friendsList.map((friend) => (
-          <FriendCard key={friend.id} {...friend} />
+          <FriendCard key={friend.id} friend={friend} {...rest} />
         ))}
       </ul>
-      {isAddingFriend && (
+      {isAddingFriend && !rest.selectedFriend && (
         <form className="form-add-friend" onSubmit={addFriend}>
           <label>👫 Friend name</label>
           <input
@@ -61,11 +63,8 @@ export default function FriendsList({
           <button className="button">Add</button>
         </form>
       )}
-      <button
-        className="button"
-        onClick={() => setIsAddingFriend((prevState) => !prevState)}
-      >
-        {isAddingFriend ? "Close" : "Add friend"}
+      <button className="button" onClick={onAddingFriend}>
+        {isAddingFriend && !rest.selectedFriend ? "Close" : "Add friend"}
       </button>
     </div>
   );

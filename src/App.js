@@ -3,8 +3,8 @@ import FriendsList from "./components/FriendsList";
 
 export default function App() {
   const [isAddingFriend, setIsAddingFriend] = useState(false);
-  /*   const [selectedFriend, setSelectedFriend]
-   */
+  const [selectedFriend, setSelectedFriend] = useState(null);
+
   const initialFriends = [
     {
       id: 118836,
@@ -26,12 +26,21 @@ export default function App() {
     },
   ];
 
+  function handleAddingFriend() {
+    if (!selectedFriend) {
+      setIsAddingFriend((prevState) => !prevState);
+    }
+  }
+
   return (
     <div class="app">
       <FriendsList
         initialFriends={initialFriends}
         isAddingFriend={isAddingFriend}
         setIsAddingFriend={setIsAddingFriend}
+        onAddingFriend={handleAddingFriend}
+        selectedFriend={selectedFriend}
+        setSelectedFriend={setSelectedFriend}
       />
     </div>
   );
